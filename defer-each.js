@@ -4,7 +4,7 @@
 
 'use strict';
 
-var id = 'deferEach';
+var id = 'defer-each';
 var dependencies = ['defer', 'is', 'promise'];
 
 function factory(defer, is, Promise) {
