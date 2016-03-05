@@ -1,0 +1,23 @@
+{
+  "name": "defer-each",
+  "version": "0.0.1",
+  "description": "Visits at most one item in `list` per event loop, executes `callback()`, and waits for any returned promise to settle before continuing to the next item.",
+  "main": "defer-each.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikol/defer-each.git"
+  },
+  "author": {
+    "name": "Mikol Graves",
+    "email": "mikol@thinbox.org",
+    "url": "https://mikol.github.io/"
+  },
+  "license": "CC-BY-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/mikol/defer-each/issues"
+  },
+  "homepage": "https://github.com/mikol/defer-each#readme"
+}
