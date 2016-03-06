@@ -9,11 +9,10 @@ var dependencies = ['defer', 'is', 'promise'];
 
 function factory(defer, is, Promise) {
   /**
-   * Like `[Array.prototype.forEach()](https://goo.gl/COenfS)`, executes
-   * `callback()` once per item in `list`. But `deferEach()` only processes one
-   * item per event loop, waiting to process any remaining items until the next
-   * event loop. Use this to wait for async code (for example, so that test
-   * setup, verification, and teardown are determinate) or to process many items
+   * Visits at most one item in `list` per event loop, executes `callback()`,
+   * and waits for any returned promise to settle before continuing to the next
+   * item. Use this to wait for async code (for example, so that test setup,
+   * verification, and teardown are determinate) or to process many items
    * without blocking the event loop (for example, so that display updates and
    * event dispatches remain responsive).
    *
@@ -40,6 +39,8 @@ function factory(defer, is, Promise) {
    * @return {Promise} A promise that resolves when all of the items in `list`
    *     have been traversed, or rejects with the first thrown exception or
    *     rejection reason.
+   *
+   * @see [Array.prototype.forEach()](https://goo.gl/COenfS)
    */
   return function deferEach(list, callback, self) {
     var index = -1;
@@ -93,6 +94,8 @@ if (typeof define === 'function' && define.amd) {
   module.exports = factory.apply(context, dependencies);
 } else {
   for (; x--;) {dependencies[x] = context[dependencies[x]];}
-  context[id] = factory.apply(context, dependencies);
+  var r = /([^-_\s])[-_\s]+([^-_\s])/g;
+  function s(m, a, b) { return a + b.toUpperCase(); }
+  context[id.replace(r, s)] = factory.apply(context, dependencies);
 }
 }(this));
